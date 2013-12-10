@@ -1,4 +1,13 @@
 Basilica::Application.routes.draw do
+  resources :inventories do
+    resources :items
+  end
+  
+  resources :items
+
+  get "/" => 'inventories#show', :id => 'Basilica', :as => "root"
+  post "/" => 'inventories#create', :as => "root"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
