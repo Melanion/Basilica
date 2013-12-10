@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item_id: 1
+  meta: 1
+  name: MyString
+  img_url: MyString
+
+two:
+  item_id: 1
+  meta: 1
+  name: MyString
+  img_url: MyString

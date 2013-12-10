@@ -1,0 +1,31 @@
+// Place all the styles related to the Inventories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.inventories {
+  table {
+    border-collapse: collapse;
+    width: 600px;
+  }
+  
+  table {
+    margin: 0 auto;
+  }
+  
+  th {
+    font-size: xx-large;
+  }
+  
+  tr td {
+    padding: 5px;
+    vertical-align: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: x-large;
+  }
+  
+  .list_image {
+    width: 60px;
+    height: 60px;
+  }
+}
