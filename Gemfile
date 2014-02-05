@@ -4,11 +4,16 @@ gem 'rails', '3.2.13'
 gem 'thin'
 gem 'mongoid', "~> 3.0.0"
 gem 'bson_ext'
+gem 'rspec-rails', '>=2.0.1'
+gem 'database_cleaner'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-
+group :test do
+  gem 'cucumber-rails', :require => false
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
