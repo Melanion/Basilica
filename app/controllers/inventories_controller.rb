@@ -45,6 +45,7 @@ class InventoriesController < ApplicationController
       { item_id: params[:item_id], meta: params[:meta], name: params[:name],
         img_url: params[:img_url], quantity: params[:quantity]}
     ]
+    #inventory wankery here
     dQ = @inventory.items.where(item_id: params[:item_id], meta: params[:meta]).first.quantity + params[:quantity].to_f
     @inventory.items.where(item_id: params[:item_id], meta: params[:meta]).first.update_attributes(
                            :quantity => dQ)
