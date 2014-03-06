@@ -5,7 +5,6 @@ gem 'thin'
 gem 'mongoid', "~> 3.0.0"
 gem 'bson_ext'
 gem 'rspec-rails', '>=2.0.1'
-gem 'database_cleaner'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
