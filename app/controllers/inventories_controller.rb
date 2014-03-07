@@ -13,7 +13,7 @@ class InventoriesController < ApplicationController
   # GET /inventories/1
   # GET /inventories/1.json
   def show
-    @inventory = Inventory.where(owner: params[:id]).first
+    @inventory = Inventory.find_or_create_by(owner: params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
