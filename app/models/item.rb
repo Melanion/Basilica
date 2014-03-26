@@ -8,4 +8,5 @@ class Item
   field :name, type: String
   field :img_url, type: String
   field :quantity, type: Integer
+  field :value, type: Integer
 end

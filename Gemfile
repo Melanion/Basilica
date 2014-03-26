@@ -5,6 +5,7 @@ gem 'thin'
 gem 'mongoid', "~> 3.0.0"
 gem 'bson_ext'
 gem 'rspec-rails', '>=2.0.1'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead:

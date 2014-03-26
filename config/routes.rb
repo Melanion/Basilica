@@ -8,7 +8,7 @@ Basilica::Application.routes.draw do
   
   resources :items
 
-  get "/" => 'inventories#show', :id => 'Basilica', :as => "root"
+  get "/" => 'sessions#create', :as => "root"
   post "/" => 'inventories#create', :as => "root"
 
   # The priority is based upon order of creation:
