@@ -1,4 +1,7 @@
 Basilica::Application.routes.draw do
+  resources :users
+
+
   resources :inventories do
     resources :items
   end

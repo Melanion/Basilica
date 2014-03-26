@@ -5,6 +5,7 @@ gem 'thin'
 gem 'mongoid', "~> 3.0.0"
 gem 'bson_ext'
 gem 'rspec-rails', '>=2.0.1'
+gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -44,3 +45,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+ruby '2.1.1'

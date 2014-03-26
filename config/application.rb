@@ -62,5 +62,9 @@ module Basilica
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Required for Heroku
+    # Don't precompile assets since Heroku doesn't provide whole app to build process
+    config.assets.initialize_on_precompile = false
   end
 end
