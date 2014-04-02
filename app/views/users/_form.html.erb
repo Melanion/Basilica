@@ -10,8 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+  <fieldset>
+  	<legend>Enter User Details</legend>
+  	<div>
+  		<%= f.label :name %>
+  		<%= f.text_field :name, size: 40 %>
+  	</div>
+  	<div>
+  		<%= f.label :password %>
+  		<%= f.password_field :password, size: 40 %>
+  	</div>
+  	<div>
+  		<%= f.label :password_confirmation, 'Confirm' %>
+  		<%= f.password_field :password_confirmation, size: 40 %>
+  	</div>
+  	<div>
+  		<%= f.submit %>
+  	</div>
+  </fieldset>
 <% end %>
