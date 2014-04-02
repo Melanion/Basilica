@@ -8,8 +8,7 @@ Basilica::Application.routes.draw do
   
   resources :items
 
-  get "/" => 'sessions#create', :as => "root"
-  post "/" => 'inventories#create', :as => "root"
+  get "/" => 'users#new', :as => "root"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
