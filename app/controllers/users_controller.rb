@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   # GET /users
   # GET /users.json
   def index
@@ -12,8 +13,14 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
+  # GET /users/Wes
+  # GET /users/Wes.json
   def show
-    @user = User.find(params[:id])
+    if params[:name] =~ /^\D/
+      @user = User.find_by_name(params[:name])
+    else
+      @user = User.find(params[:name])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,12 +64,12 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = User.where(name: params[:name]).first
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(balance: :balance)
         format.html { redirect_to users_url, notice: "User #{@user.name} 
-        was successfully updated." }
+        was successfully updated. Balance: #{@user.balance}" }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

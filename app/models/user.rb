@@ -11,4 +11,14 @@ class User
   field :balance, type: Integer
   
   has_one :inventory
+  
+  class << self
+    def find_by_name(name)
+      if where(:name => /#{name}/i).exists?
+        return where(:name => /#{name}/i).first
+      else
+        return nil
+      end
+    end
+  end
 end

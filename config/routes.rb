@@ -1,6 +1,4 @@
 Basilica::Application.routes.draw do
-  resources :users
-
 
   resources :inventories do
     resources :items
@@ -9,6 +7,10 @@ Basilica::Application.routes.draw do
   resources :items
 
   get "/" => 'users#new', :as => "root"
+  post "/users/:name" => 'users#update'
+  get "/users/:name" => 'users#show'
+  
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
