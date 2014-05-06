@@ -8,7 +8,8 @@ Basilica::Application.routes.draw do
 
   get "/" => 'users#new', :as => "root"
   post "/users/:name" => 'users#update'
-  get "/users/:name" => 'users#show'
+  get "/getuser/:name" => 'users#getuser'
+  post "/getuser/" => 'users#update'
   
   resources :users
 

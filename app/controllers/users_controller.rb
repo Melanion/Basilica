@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order_by(:name.desc)
+    #@users = User.order_by(:name.desc)
+    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,11 +17,7 @@ class UsersController < ApplicationController
   # GET /users/Wes
   # GET /users/Wes.json
   def show
-    if params[:name] =~ /^\D/
-      @user = User.find_by_name(params[:name])
-    else
-      @user = User.find(params[:name])
-    end
+    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -67,7 +64,7 @@ class UsersController < ApplicationController
     @user = User.where(name: params[:name]).first
 
     respond_to do |format|
-      if @user.update_attributes(balance: :balance)
+      if @user.update_attributes(balance: params[:balance])
         format.html { redirect_to users_url, notice: "User #{@user.name} 
         was successfully updated. Balance: #{@user.balance}" }
         format.json { head :no_content }
@@ -87,6 +84,28 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+
+  def getuser
+    if params[:name] =~ /^\D/
+      @user = User.find_by_name(params[:name])
+      if @user == nil
+        @user = User.new(name: params[:name], balance: 5000,
+                         password: "initial", password_confirmation: "initial")
+      end
+    else
+      @user = User.find(params[:name])
+    end
+
+    respond_to do |format|
+      if @user.save
+        format.html # show.html.erb
+        format.json { render json: "name=#{@user.name}&balance=#{@user.balance}" }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 end

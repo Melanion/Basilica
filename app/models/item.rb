@@ -1,6 +1,5 @@
 class Item
   include Mongoid::Document
-  belongs_to :inventory
   validates :item_id, :presence => true, :uniqueness => { :scope => :meta } 
   validates :meta, :presence => true
   field :item_id, type: Integer
