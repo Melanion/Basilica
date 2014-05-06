@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def getuser
+  def get_user_balance
     if params[:name] =~ /^\D/
       @user = User.find_by_name(params[:name])
       if @user == nil
@@ -101,7 +101,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html # show.html.erb
-        format.json { render json: "name=#{@user.name}&balance=#{@user.balance}" }
+        format.json { render json: "#{@user.balance}" }
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
