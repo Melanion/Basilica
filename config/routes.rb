@@ -1,16 +1,15 @@
 Basilica::Application.routes.draw do
 
-  resources :inventories do
-    resources :items
-  end
-  
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
+  root :to => "users#new"
+  resources :users
+  resources :sessions
   resources :items
-
-  get "/" => 'users#new', :as => "root"
+  
   get "/getuser/:name" => 'users#get_user_balance'
   post "/getuser/" => 'users#update'
-  
-  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

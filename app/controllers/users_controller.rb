@@ -44,17 +44,22 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to users_url, notice: "User #{@user.name} 
-        was successfully created." }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    @user = User.find_by_name(params[:user][:name])
+    if @user && @user.authenticate("initial")
+      @user.update_attributes(password: params[:user][:password], 
+                              password_confirmation: params[:user][:password_confirmation])
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to "/log_in", notice: "User #{@user.name} 
+          was successfully created." }
+          format.json { render json: @user, status: :created, location: @user }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_url, notice: "User accounts must be created in-game first"
     end
   end
 
