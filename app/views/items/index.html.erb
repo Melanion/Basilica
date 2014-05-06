@@ -8,12 +8,17 @@
   	<th>&nbsp;</th>
     <th>Item</th>
     <th>Quantity</th>
+    <th>Package</th>
+    <th>Cost</th>
+    <th>&nbsp;</th>
   </tr>
 <% @items.each do |item| %>
   <tr>
   	<td style="width:10%;"><%= image_tag(item.img_url, class: 'list_image') %></td>
     <td><%= item.name %></td>
     <td><%= item.quantity %></td>
+    <td><%= item.package %></td>
+    <td><%= item.value %></td>
   </tr>
 <% end %>
 </table>

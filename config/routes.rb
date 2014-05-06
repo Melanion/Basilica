@@ -10,6 +10,7 @@ Basilica::Application.routes.draw do
   
   get "/getuser/:name" => 'users#get_user_balance'
   post "/getuser/" => 'users#update'
+  post "/updateitem/" => 'items#update'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

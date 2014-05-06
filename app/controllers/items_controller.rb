@@ -56,16 +56,20 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = Item.find(params[:id])
+    @item = Item.where(:item_id => params[:item_id], :meta => params[:meta]).first
 
-    respond_to do |format|
-      if @item.update_attributes(params[:item])
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+    if @item
+      respond_to do |format|
+        if @item.update_attributes(:quantity => (@item.quantity + params[:quantity].to_i))
+          format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      @item = item.create(params[:item_id], params[:meta])
     end
   end
 
