@@ -59,17 +59,24 @@ class ItemsController < ApplicationController
     @item = Item.where(:item_id => params[:item_id], :meta => params[:meta]).first
 
     if @item
-      respond_to do |format|
-        if @item.update_attributes(:quantity => (@item.quantity + params[:quantity].to_i))
-          format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-          format.json { head :no_content }
+      if (params[:quantity].to_i < 0) && @item.quantity >= @item.package
+        if current_user && (current_user.balance < @item.value)
+           redirect_to items_url, notice: "You can't afford any #{@item.name}."
+        elsif current_user
+          @item.update_attributes(:quantity => (@item.quantity + params[:quantity].to_i))
+          user = User.find_by_name(current_user.name)
+          user.update_attributes(:balance => (user.balance - @item.value))
+          redirect_to items_url, notice: "You bought #{@item.name} x #{@item.package} for #{@item.value} credits."
         else
-          format.html { render action: "edit" }
-          format.json { render json: @item.errors, status: :unprocessable_entity }
+          @item.update_attributes(:quantity => (@item.quantity + params[:quantity].to_i))
+          redirect_to items_url, notice: "Quantity of #{@item.name} decreased."
         end
+      else
+        @item.update_attributes(:quantity => (@item.quantity + params[:quantity].to_i))
+        redirect_to items_url, notice: "Quantity of #{@item.name} increased."
       end
     else
-      @item = item.create(params[:item_id], params[:meta])
+      redirect_to items_url
     end
   end
 
